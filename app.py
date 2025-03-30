@@ -59,8 +59,9 @@ def index():
         titulo = baixar_video(url, pasta, progresso_callback)
         obter_transcricao(url, pasta, titulo)
         
-        return f"Download concluído! Arquivos salvos em {pasta}"  
-    return render_template("index.html")
+        return render_template("index.html", pasta=pasta, titulo=titulo)
+    
+    return render_template("index.html", pasta=None)
 
 if __name__ == "__main__":
     app.run(debug=True)
