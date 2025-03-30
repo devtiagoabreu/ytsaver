@@ -7,7 +7,7 @@
     }
   ],
   "functions": {
-    "api/*": {
+    "api/index.py": {
       "runtime": "python@3.10"
     }
   }
