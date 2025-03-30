@@ -1,15 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "index.py"
     }
-  ]
+  ],
+  "functions": {
+    "api/*": {
+      "runtime": "python@3.12.7"
+    }
+  }
 }
