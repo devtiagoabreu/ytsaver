@@ -1,6 +1,6 @@
 import os
 import re
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from pytubefix import YouTube
 from moviepy.editor import VideoFileClip
 from youtube_transcript_api import YouTubeTranscriptApi
@@ -15,10 +15,9 @@ def progresso_callback(stream, chunk, bytes_remaining):
     total_size = stream.filesize
     bytes_downloaded = total_size - bytes_remaining
     progresso = (bytes_downloaded / total_size) * 100
-    print(f"Progresso: {progresso:.2f}%")
     return progresso
 
-def baixar_video(url, pasta, progresso_callback):
+def baixar_video(url, pasta):
     yt = YouTube(url)
     titulo_limpo = limpar_nome(yt.title)
     video_path = os.path.join(pasta, f"{titulo_limpo}.mp4")
@@ -56,11 +55,16 @@ def index():
         pasta = os.path.join(desktop, "Videos_Baixados")
         os.makedirs(pasta, exist_ok=True)
         
-        titulo = baixar_video(url, pasta, progresso_callback)
+        # Realiza o download e transcrição
+        titulo = baixar_video(url, pasta)
         obter_transcricao(url, pasta, titulo)
         
         return render_template("index.html", pasta=pasta, titulo=titulo)
     
+    return render_template("index.html", pasta=None)
+
+@app.route("/reset", methods=["GET"])
+def reset():
     return render_template("index.html", pasta=None)
 
 if __name__ == "__main__":

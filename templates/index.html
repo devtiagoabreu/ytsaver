@@ -31,7 +31,7 @@
         <p>Áudio: <a href="{{ pasta }}/{{ titulo }}.mp3" download>{{ titulo }}.mp3</a></p>
         <p>Transcrição: <a href="{{ pasta }}/{{ titulo }}.txt" download>{{ titulo }}.txt</a></p>
         <br>
-        <button class="btn btn-secondary" onclick="window.location.reload();">Baixar Outro</button>
+        <button class="btn btn-secondary" onclick="window.location.href='/reset';">Baixar Outro</button>
         {% endif %}
         
         <hr>
@@ -40,5 +40,19 @@
             <p><a href="https://github.com/devtiagoabreu" target="_blank">GitHub</a> | <a href="https://www.instagram.com/devtiagoabreu/" target="_blank">Instagram</a></p>
         </footer>
     </div>
+
+    <script>
+        function updateProgressBar(progresso) {
+            let progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = progresso + '%';
+            progressBar.setAttribute('aria-valuenow', progresso);
+        }
+
+        // Simulação de progresso
+        setInterval(() => {
+            let progresso = Math.min(Math.random() * 100, 100);
+            updateProgressBar(progresso);
+        }, 1000);
+    </script>
 </body>
 </html>
