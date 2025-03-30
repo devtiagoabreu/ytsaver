@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "index.py"
     }
-  ],
-  "functions": {
-    "api/*": {
-      "runtime": "python@3.12.7"
-    }
-  }
+  ]
 }
