@@ -10,9 +10,20 @@ YouTube Saver é um aplicativo em Python com interface web que permite baixar v�
 - 🚀 Gera resumos da transcrição utilizando api gratuita do google
 
 ## 🚀 Como instalar e executar
+### 1️⃣ Clone o repositório e configure o arquivo .env
+```bash
+git clone https://github.com/devtiagoabreu/ytsaver.git
+```
+OBS: ENTRE EM SUA CONTA GOOGLE, ACESSE [AISTUDIO](https://aistudio.google.com/apikey) E GERE SUA API KEY GRATUITAMENTE
+Dentro da pasta raiz do projeto você encontrará o arquivo .env.exemple
+Renomeie para .env 
+Edite o arquivo inserindo sua APIKEY --> API_KEY_GOOGLE_AI = "COLE AQUI DENTRO DA ASPAS" E SALVE
+
+
 ### 1️⃣ Instale as dependências
 ```bash
-pip install flask pytube moviepy==1.0.3 youtube-transcript-api
+pip install flask pytubefix moviepy==1.0.3 youtube-transcript-api
+pip install -U google-generativeai 
 ```
 
 ### 2️⃣ Execute o aplicativo dentro da pasta API
@@ -28,7 +39,7 @@ http://127.0.0.1:5000
 
 ## 🖥️ Uso
 1. Insira a URL do vídeo do YouTube no campo de texto.
-2. Clique no botão **Baixar**.
+2. Clique no botão **Baixar Vídeo**.
 3. Aguarde o download e processamento.
 4. Os arquivos serão salvos na pasta **Videos_Baixados** no Desktop.
 
@@ -47,12 +58,13 @@ http://127.0.0.1:5000
 - **moviepy** → Extração de áudio
 - **youtube_transcript_api** → Captura de transcrição
 - **google.generativeai** → Efetua resumos da transcrição pela API do gemini gratuita
-- **obs** → ENTRE EM SUA CONTA GOOGLE, ACESSE [AISTUDIO](http://atriostech.com.br/tiago/) E GERE SUA API KEY 
+- **obs** → ENTRE EM SUA CONTA GOOGLE, ACESSE [AISTUDIO](https://aistudio.google.com/apikey) E GERE SUA API KEY 
 
 
 ## 📌 Observações
 - A transcrição só será salva se o vídeo tiver legendas ativadas pelo proprietário.
 - O nome dos arquivos será formatado para evitar caracteres especiais.
+- A API KEY gratuita geralmente possui uma limitação. Sendo assim alguns resumos podem não ser carregados, conforme o tamanho do texto de transcrição.
 
 ## 📜 Licença
 Este projeto é de uso livre para qualquer finalidade.
