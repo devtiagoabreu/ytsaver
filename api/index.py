@@ -74,6 +74,12 @@ def obter_transcricao(url, pasta, titulo):
         resumo_path = os.path.join(pasta, f"{titulo}_reuniao_empresarial.txt")
         with open(resumo_path, "w", encoding="utf-8") as f:
             f.write(resumo)
+
+        # Gerar e salvar Mapa Mental
+        resumo = gerar_mapa_mental_da_transcricao(texto)
+        resumo_path = os.path.join(pasta, f"{titulo}_mapa_mental.txt")
+        with open(resumo_path, "w", encoding="utf-8") as f:
+            f.write(resumo)
         
     except Exception as e:
         print(f"Erro ao obter a transcrição: {e}")
@@ -120,6 +126,16 @@ def gerar_conteudo_para_rede_social_da_transcricao(texto):
     """Gera um resumo da transcrição com um prompt personalizado."""
     try:
         prompt = "Deste texto, gere contúdos para redes sociais nos formatos de reels, shorts e storys, com a Estrutura em 'F' de atenção (layout que guia o olhar do usuário, comum em design), no Formato de storytelling (Introdução → Conflito → Clímax → Resolução) e Fórmulas de copywriting (como AIDA: Atenção, Interesse, Desejo, Ação), crie tags para ligar informações no obsidian logo no final de acordo com o resumo gerado."
+        model = genai.GenerativeModel("gemini-1.5-pro-latest")
+        response = model.generate_content(f"{prompt}\n\n{texto}")
+        return response.text
+    except Exception as e:
+        return f"Erro ao gerar resumo: {str(e)}"
+
+def gerar_mapa_mental_da_transcricao(texto):
+    """Gera um resumo da transcrição com um prompt personalizado."""
+    try:
+        prompt = "crie um mapa mental do texto, sendo que o conteúdo seja orinal, escrito por um professor da área do tema do texto, seguindo os estilos de Leandro Karnal, Marilena Chauí, Mario Sergio Cortella ou Clóvis Barros Filho, Tom Descontraído, mas técnico e Direto ao ponto, Título criativo** (usar emojis, Formato Markdown, Bônus: Links Úteis [Documentação]() | [Ferramenta]() | [Artigo Relacionado]() , crie tags para ligar informações no obsidian logo no final de acordo com o resumo gerado"
         model = genai.GenerativeModel("gemini-1.5-pro-latest")
         response = model.generate_content(f"{prompt}\n\n{texto}")
         return response.text
