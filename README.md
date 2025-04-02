@@ -1,6 +1,6 @@
 # ytsaver
 
-YouTube Saver é um aplicativo em Python com interface web que permite baixar vídeos do YouTube, extrair o áudio e capturar a transcrição (se disponível). Os arquivos são organizados em uma pasta no desktop do usuário.
+YouTube Saver é um aplicativo em Python com interface web que permite baixar vídeos do YouTube, extrair o áudio, capturar a transcrição (se disponível) e efetua resumos da mesma. Os arquivos são organizados em uma pasta no desktop do usuário.
 
 ## 📌 Funcionalidades
 - 📥 Baixa vídeos do YouTube na melhor qualidade disponível.
@@ -47,7 +47,7 @@ http://127.0.0.1:5000
 - **moviepy** → Extração de áudio
 - **youtube_transcript_api** → Captura de transcrição
 - **google.generativeai** → Efetua resumos da transcrição pela API do gemini gratuita
-- **obs** → ENTRE EM SUA CONTA GOOGLE, ACESSE [AISTIDIO](http://atriostech.com.br/tiago/) E GERE SUA API KEY 
+- **obs** → ENTRE EM SUA CONTA GOOGLE, ACESSE [AISTUDIO](http://atriostech.com.br/tiago/) E GERE SUA API KEY 
 
 
 ## 📌 Observações
